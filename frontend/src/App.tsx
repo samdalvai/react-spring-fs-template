@@ -1,10 +1,10 @@
 import './App.css';
-import Routes from './routes/Routes';
+import AppRoutes from './routes/AppRoutes';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <Routes />
+      <AppRoutes />
     </div>
   );
 }
