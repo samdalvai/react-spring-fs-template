@@ -6,9 +6,9 @@ import Contact from '../pages/Contact';
 function Routes() {
   return (
     <Switch >
-      <Route path="/" Component={Home} />
-      <Route path="/about" Component={About} />
-      <Route path="/contact" Component={Contact} />
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
     </Switch >
   );
 };
