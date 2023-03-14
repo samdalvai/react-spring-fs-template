@@ -1,8 +1,12 @@
+import { Card } from "../layout/Card";
+
 const Login = () => {
     return (
-        <div className="text-2xl bold">
-            Login
-        </div>
+        <Card>
+            <div className="text-2xl bold">
+                Login
+            </div>
+        </Card>
     )
 }
 
