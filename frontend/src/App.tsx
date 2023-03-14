@@ -1,13 +1,17 @@
-import './App.css';
-import Layout from './pages/Layout';
-import AppRouter from './routes/AppRouter';
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import './App.css'
+import Layout from './pages/Layout'
+import AppRouter from './routes/AppRouter'
 
-const App = () => {
+function App() {
+  const [count, setCount] = useState(0)
+
   return (
-    <h1 className="">
-      Hello world!
-    </h1>
-  );
+    <Layout>
+      <AppRouter />
+    </Layout>
+  )
 }
 
-export default App;
+export default App
