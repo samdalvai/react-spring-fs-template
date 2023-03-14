@@ -1,10 +1,10 @@
 import './App.css';
-import AppRoutes from './routes/AppRoutes';
+import AppRouter from './routes/AppRouter';
 
 const App = () => {
   return (
     <div className="App">
-      <AppRoutes />
+      <AppRouter />
     </div>
   );
 }
