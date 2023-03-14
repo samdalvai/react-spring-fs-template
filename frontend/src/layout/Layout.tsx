@@ -4,11 +4,8 @@ export interface Props { children: JSX.Element | JSX.Element[] }
 
 const Layout = ({ children }: Props) => {
     return (
-        <div className="h-screen w-screen bg-black">
-            <Header />
-            <div className="mx-auto">
-                {children}
-            </div>
+        <div className="h-screen w-screen bg-slate-200 flex items-center justify-center">
+            {children}
         </div>
     )
 }
