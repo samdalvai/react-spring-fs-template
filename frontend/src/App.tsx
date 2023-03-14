@@ -4,9 +4,9 @@ import AppRouter from './routes/AppRouter';
 
 const App = () => {
   return (
-    <Layout>
-      <AppRouter />
-    </Layout>
+    <h1 className="">
+      Hello world!
+    </h1>
   );
 }
 

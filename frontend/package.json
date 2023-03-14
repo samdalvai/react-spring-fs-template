@@ -16,7 +16,6 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
-    "tailwindcss": "^3.2.7",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
@@ -24,9 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:css": "postcss src/styles/tailwind.css -o src/styles/main.css",
-    "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css -w"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
