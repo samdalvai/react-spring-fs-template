@@ -1,11 +1,12 @@
 import './App.css';
+import Layout from './pages/Layout';
 import AppRouter from './routes/AppRouter';
 
 const App = () => {
   return (
-    <div className="App">
+    <Layout>
       <AppRouter />
-    </div>
+    </Layout>
   );
 }
 
