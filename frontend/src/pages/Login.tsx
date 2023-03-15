@@ -1,5 +1,6 @@
 import Card from "../layout/Card";
-import MemoryLogo from "../components/Logo/MemoryLogo";
+import MemoryLogo from '../components/MemoryLogo';
+import InputField from './../components/InputField';
 
 export default function Login() {
 	return (<div>
@@ -12,7 +13,10 @@ export default function Login() {
 			</span>
 		</div>
 		<Card>
-
+			<div className="flex flex-col w-4/5">
+				<InputField label={"Email"} name={"email"}/>
+				<InputField label={"Password"} name={"password"} />
+			</div>
 		</Card>
 	</div>
 	)
