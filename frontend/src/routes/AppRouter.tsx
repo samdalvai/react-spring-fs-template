@@ -5,7 +5,7 @@ import Login from '../pages/Login';
 import SignUp from '../pages/SignUp';
 import PrivateRoute from './PrivateRoute';
 
-const AppRouter = () => {
+export default function AppRouter() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   return (
@@ -19,5 +19,3 @@ const AppRouter = () => {
     </Routes>
   );
 };
-
-export default AppRouter;

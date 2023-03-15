@@ -1,13 +1,7 @@
-import { Card } from "../layout/Card";
+import Card from "../layout/Card";
 
-const Login = () => {
-    return (
-        <Card>
-            <div className="text-2xl bold">
-                Login
-            </div>
-        </Card>
-    )
+export default function Login() {
+	return (
+		<div>Login</div>
+	)
 }
-
-export default Login;
