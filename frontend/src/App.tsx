@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import Layout from './layout/Layout'
 import AppRouter from './routes/AppRouter'
 
