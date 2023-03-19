@@ -6,5 +6,6 @@ CREATE TABLE public.user
     name VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(50) NOT NULL,
-    salt VARCHAR(50) NOT NULL
+    salt VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL
 );
