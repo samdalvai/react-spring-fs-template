@@ -17,6 +17,7 @@ export default function Login() {
 			<div className="flex flex-col w-4/5">
 				<InputField label={"Email"} name={"email"}/>
 				<InputField label={"Password"} name={"password"} />
+				<hr className="my-2 border-none"/>
 				<Button label={"Login"} name={"login"} />
 			</div>
 		</Card>
