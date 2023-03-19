@@ -36,6 +36,13 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> singnup(@RequestBody SignUpRequest signUpRequest) throws URISyntaxException {
+        if (signUpRequest.getName() == null || signUpRequest.getName().isEmpty() ||
+                signUpRequest.getEmail() == null || signUpRequest.getEmail().isEmpty() ||
+                signUpRequest.getPassword() == null || signUpRequest.getPassword().isEmpty()
+        ) {
+            throw new IllegalArgumentException("Name and email fields are required");
+        }
+
         User newUser = new User();
         newUser.setName(signUpRequest.getName());
         newUser.setEmail(signUpRequest.getEmail());
