@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const baseUrl = '/api/auth';
 
-export const registerAPI = async (userData: any) => {
-    const response = await axios.post(`${baseUrl}/register`, userData);
+export const signupAPI = async (userData: any) => {
+    const response = await axios.post(`${baseUrl}/signup`, userData);
     return response;
 };
 
