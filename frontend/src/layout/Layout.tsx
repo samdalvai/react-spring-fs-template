@@ -1,6 +1,5 @@
 import Header from "./Header";
-
-export interface Props { children: JSX.Element | JSX.Element[] }
+import { Props } from "../types/props";
 
 export default function Layout({ children }: Props) {
     return (
