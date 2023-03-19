@@ -1,10 +1,6 @@
 # memory-notes
-A web application for keeping notes and knowledge
-
-# Snowload Calculator
-A web application for the calculation of snowload and snow retaining systems in Italy
-based on the full stack application template from tutorial [app](https://www.baeldung.com/spring-boot-react-crud).
-The application architecture is based on a backend API with `Java Spring Boot` along with a `MySql` database,
+A web application for keeping notes and knowledge.
+The application architecture is based on a backend API with `Java Spring Boot` along with a `PostgreSQL` database,
 and a frontend application with `React`.
 
 # Table of contents
