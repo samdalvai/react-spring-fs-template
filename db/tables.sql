@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS public.user;
+
 CREATE TABLE public.user 
 (
     id SERIAL PRIMARY KEY,
