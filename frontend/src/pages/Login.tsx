@@ -23,11 +23,13 @@ export default function Login() {
 					label={"Email"}
 					name={"email"}
 					value={userEmail}
+					type={"email"} 
 					onChange={setUserEmail} />
 				<InputField
 					label={"Password"}
 					name={"password"}
 					value={password}
+					type={"text"} 
 					onChange={setPassword} />
 				<hr className="my-2 border-none" />
 				<Button 
