@@ -30,7 +30,10 @@ export default function Login() {
 					value={password}
 					onChange={setPassword} />
 				<hr className="my-2 border-none" />
-				<Button label={"Login"} name={"login"} />
+				<Button 
+				label={"Login"} 
+				name={"login"} 
+				onClick={() => console.log("Clicked")} />
 			</div>
 		</Card>
 	</div>
