@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/hello")
 public class HelloWorldController {
     
-    // URL example: http://localhost:8080/cities
+    // URL example: http://localhost:8080
     @GetMapping
     public String hello() {
         return "Hello World!";
