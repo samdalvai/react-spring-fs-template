@@ -26,7 +26,6 @@ public class UserController {
         String requestPassword = loginRequest.getPassword();
 
         User user = userRepository.findUserByEmail(requestEmail);
-        System.out.println("user: " + user.getName());
 
         if (user == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
@@ -35,12 +34,7 @@ public class UserController {
         String userSalt = user.getSalt();
         String userPassword = user.getPassword();
 
-        System.out.println("userSalt: " + userSalt);
-        System.out.println("userPassword: " + userPassword);
-
         String hashedPasswordWithSalt = PasswordUtils.hashPassword(requestPassword + userSalt);
-
-        System.out.println("hashedPasswordWithSalt: " + hashedPasswordWithSalt);
 
         if (hashedPasswordWithSalt.equals(userPassword)) {
             return ResponseEntity.ok("Login successful!");
