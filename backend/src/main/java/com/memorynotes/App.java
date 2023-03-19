@@ -1,4 +1,4 @@
-package com.memorynotes.demo;
+package com.memorynotes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
