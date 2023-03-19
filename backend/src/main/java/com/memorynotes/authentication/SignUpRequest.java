@@ -1,16 +1,26 @@
 package com.memorynotes.authentication;
 
-public class LoginRequest {
+public class SignUpRequest {
 
-    private String email;
-    private String password;
+    String name;
+    String email;
+    String password;
 
-    public LoginRequest() {
+    public SignUpRequest() {
     }
 
-    public LoginRequest(String email, String password) {
+    public SignUpRequest(String name, String email, String password) {
+        this.name = name;
         this.email = email;
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

@@ -1,12 +1,14 @@
 package com.memorynotes.controller;
 
 import com.memorynotes.authentication.LoginRequest;
+import com.memorynotes.authentication.SignUpRequest;
 import com.memorynotes.model.User;
 import com.memorynotes.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.net.URISyntaxException;
 
 @RestController
@@ -18,9 +20,8 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    // URL example: http://localhost:8080/login
     @PostMapping("/login")
-    public ResponseEntity<?> createProvince(@RequestBody LoginRequest loginRequest) throws URISyntaxException {
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws URISyntaxException {
         String email = loginRequest.getEmail();
         String password = loginRequest.getPassword();
 
@@ -31,5 +32,17 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> singnup(@RequestBody SignUpRequest signUpRequest) throws URISyntaxException {
+        User newUser = new User();
+        newUser.setName(signUpRequest.getName());
+        newUser.setEmail(signUpRequest.getEmail());
+        newUser.setPassword(signUpRequest.getPassword());
+
+        userRepository.save(newUser);
+
+        return ResponseEntity.ok("User with ID " + newUser.getId() + " created.");
     }
 }
