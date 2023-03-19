@@ -8,4 +8,5 @@ CREATE TABLE public.user
     password VARCHAR(50) NOT NULL
 );
 
-INSERT INTO public.user VALUES (1, 'test', 'test@email.it', 'password');
+-- 5f4dcc3b5aa765d61d8327deb882cf99 is the md5 hash value for the string 'password'
+INSERT INTO public.user VALUES (1, 'test', 'test@email.it', '5f4dcc3b5aa765d61d8327deb882cf99');

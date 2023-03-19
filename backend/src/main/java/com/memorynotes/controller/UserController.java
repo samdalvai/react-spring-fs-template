@@ -1,14 +1,14 @@
 package com.memorynotes.controller;
 
-import com.memorynotes.authentication.LoginRequest;
-import com.memorynotes.authentication.SignUpRequest;
+import com.memorynotes.authentication.hash.HashUtils;
+import com.memorynotes.authentication.requests.LoginRequest;
+import com.memorynotes.authentication.requests.SignUpRequest;
 import com.memorynotes.model.User;
 import com.memorynotes.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 
 @RestController
@@ -25,7 +25,7 @@ public class UserController {
         String email = loginRequest.getEmail();
         String password = loginRequest.getPassword();
 
-        User user = userRepository.findUserByEmailAndPassword(email, password);
+        User user = userRepository.findUserByEmailAndPassword(email, HashUtils.hashPassword(password));
 
         if (user != null) {
             return ResponseEntity.ok("Login successful!");
@@ -46,7 +46,7 @@ public class UserController {
         User newUser = new User();
         newUser.setName(signUpRequest.getName());
         newUser.setEmail(signUpRequest.getEmail());
-        newUser.setPassword(signUpRequest.getPassword());
+        newUser.setPassword(HashUtils.hashPassword(signUpRequest.getPassword()));
 
         userRepository.save(newUser);
 

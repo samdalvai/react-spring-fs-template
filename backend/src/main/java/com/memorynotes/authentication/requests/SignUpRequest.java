@@ -1,4 +1,4 @@
-package com.memorynotes.authentication;
+package com.memorynotes.authentication.requests;
 
 public class SignUpRequest {
 
