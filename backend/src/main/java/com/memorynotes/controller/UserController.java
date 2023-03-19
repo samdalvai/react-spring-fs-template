@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> singnup(@RequestBody SignUpRequest signUpRequest) throws URISyntaxException {
+    public ResponseEntity<?> signup(@RequestBody SignUpRequest signUpRequest) throws URISyntaxException {
         if (signUpRequest.getName() == null || signUpRequest.getName().isEmpty() ||
                 signUpRequest.getEmail() == null || signUpRequest.getEmail().isEmpty() ||
                 signUpRequest.getPassword() == null || signUpRequest.getPassword().isEmpty()
