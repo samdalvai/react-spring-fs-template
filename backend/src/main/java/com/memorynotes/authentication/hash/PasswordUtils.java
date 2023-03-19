@@ -2,8 +2,9 @@ package com.memorynotes.authentication.hash;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
-public class HashUtils {
+public class PasswordUtils {
     public static String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -16,5 +17,23 @@ public class HashUtils {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error hashing password", e);
         }
+    }
+
+    public static String generateSalt() {
+        SecureRandom random = new SecureRandom();
+
+        byte[] salt = new byte[16];
+        random.nextBytes(salt);
+
+        return hex(salt);
+    }
+
+    private static String hex(byte[] bytes) {
+        StringBuilder result = new StringBuilder();
+        for (byte aByte : bytes) {
+            result.append(String.format("%02x", aByte));
+        }
+
+        return result.toString();
     }
 }

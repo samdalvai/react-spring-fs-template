@@ -11,14 +11,16 @@ public class User {
     String name;
     String email;
     String password;
+    String salt;
 
     public User() {
     }
 
-    public User(String name, String email, String password) {
+    public User(String name, String email, String password, String salt) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.salt = salt;
     }
 
     public Long getId() {
@@ -53,13 +55,11 @@ public class User {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

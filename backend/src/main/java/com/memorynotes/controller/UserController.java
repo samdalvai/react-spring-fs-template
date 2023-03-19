@@ -1,6 +1,6 @@
 package com.memorynotes.controller;
 
-import com.memorynotes.authentication.hash.HashUtils;
+import com.memorynotes.authentication.hash.PasswordUtils;
 import com.memorynotes.authentication.requests.LoginRequest;
 import com.memorynotes.authentication.requests.SignUpRequest;
 import com.memorynotes.model.User;
@@ -22,12 +22,27 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws URISyntaxException {
-        String email = loginRequest.getEmail();
-        String password = loginRequest.getPassword();
+        String requestEmail = loginRequest.getEmail();
+        String requestPassword = loginRequest.getPassword();
 
-        User user = userRepository.findUserByEmailAndPassword(email, HashUtils.hashPassword(password));
+        User user = userRepository.findUserByEmail(requestEmail);
+        System.out.println("user: " + user.getName());
 
-        if (user != null) {
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+        }
+
+        String userSalt = user.getSalt();
+        String userPassword = user.getPassword();
+
+        System.out.println("userSalt: " + userSalt);
+        System.out.println("userPassword: " + userPassword);
+
+        String hashedPasswordWithSalt = PasswordUtils.hashPassword(requestPassword + userSalt);
+
+        System.out.println("hashedPasswordWithSalt: " + hashedPasswordWithSalt);
+
+        if (hashedPasswordWithSalt.equals(userPassword)) {
             return ResponseEntity.ok("Login successful!");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
@@ -46,7 +61,10 @@ public class UserController {
         User newUser = new User();
         newUser.setName(signUpRequest.getName());
         newUser.setEmail(signUpRequest.getEmail());
-        newUser.setPassword(HashUtils.hashPassword(signUpRequest.getPassword()));
+
+        String salt = PasswordUtils.generateSalt();
+        newUser.setPassword(PasswordUtils.hashPassword(signUpRequest.getPassword() + salt));
+        newUser.setSalt(salt);
 
         userRepository.save(newUser);
 
