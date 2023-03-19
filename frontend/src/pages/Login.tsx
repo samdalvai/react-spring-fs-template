@@ -1,12 +1,17 @@
+import { useState } from "react";
+import { useSelector } from 'react-redux';
 import Card from "../layout/Card";
 import MemoryLogo from '../components/MemoryLogo';
 import InputField from './../components/InputField';
 import Button from "../components/Button";
-import { useState } from "react";
+import { RootState } from "../store";
 
 export default function Login() {
 	const [userEmail, setUserEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
+	const authState = useSelector((state: RootState) => state.auth);
+
+	console.log("authState: ", authState)
 
 	return (<div>
 		<div className="py-5 text-xl flex items-center justify-center">

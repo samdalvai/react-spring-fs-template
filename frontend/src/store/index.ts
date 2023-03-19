@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import authReducer from '../reducers/authReducer';
 
 const rootReducer = combineReducers({
-    user: authReducer,
+  auth: authReducer,
 });
 
 const store = configureStore({
@@ -12,4 +12,5 @@ const store = configureStore({
   middleware: [thunk],
 });
 
+export type RootState = ReturnType<typeof store.getState>;
 export default store;
