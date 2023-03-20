@@ -7,6 +7,7 @@ import Button from "../components/Button";
 import { RootState } from "../store";
 import { login } from '../actions/authActions';
 import { Navigate } from "react-router-dom";
+import ErrorAlert from "../components/ErrorAlert";
 
 export default function Login() {
 	const dispatch = useDispatch();
@@ -32,10 +33,11 @@ export default function Login() {
 			<span>
 				<h1 className="text-slate-700 text-xl font-medium">Login to MemoryNotes</h1>
 			</span>
-			<span className="ml-3 p-3 bg-indigo-500 rounded-md shadow-lg">
+			<span className="ml-3 p-3 bg-indigo-500 rounded-md shadow-md">
 				<MemoryLogo />
 			</span>
 		</div>
+		<ErrorAlert message="Wrong username or password..." />
 		<Card size="md">
 			<div className="flex flex-col w-4/5">
 				<InputField
