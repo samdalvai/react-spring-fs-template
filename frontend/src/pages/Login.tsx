@@ -6,17 +6,24 @@ import InputField from './../components/InputField';
 import Button from "../components/Button";
 import { RootState } from "../store";
 import { login, logout } from '../actions/authActions';
+import { Navigate } from "react-router-dom";
 
 export default function Login() {
 	const dispatch = useDispatch();
-	
 	const [userEmail, setUserEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const authState = useSelector((state: RootState) => state.auth);
+	const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
 	console.log("authState: ", authState)
+	console.log("isAuthenticated: ", isAuthenticated)
+
 	const onSubmit = () => {
 		dispatch(login({email: userEmail, password: password}))
+	}
+
+	if (isAuthenticated) {
+		return <Navigate to={"/"} />;
 	}
 
 	return (<div>
