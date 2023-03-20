@@ -12,10 +12,15 @@ export default function Login() {
 	const dispatch = useDispatch();
 	const [userEmail, setUserEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
-	const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+	const { isAuthenticated, loading, error, user } = useSelector((state: RootState) => state.auth);
+
+	console.log("isAuthenticated: ", isAuthenticated)
+	console.log("loading: ", loading)
+	console.log("error: ", error)
+	console.log("user: ", user)
 
 	const onSubmit = () => {
-		dispatch(login({email: userEmail, password: password}))
+		dispatch(login({ email: userEmail, password: password }))
 	}
 
 	if (isAuthenticated) {
@@ -37,19 +42,21 @@ export default function Login() {
 					label={"Email"}
 					name={"email"}
 					value={userEmail}
-					type={"email"} 
+					type={"email"}
 					onChange={setUserEmail} />
 				<InputField
 					label={"Password"}
 					name={"password"}
 					value={password}
-					type={"password"} 
+					type={"password"}
 					onChange={setPassword} />
 				<hr className="my-2 border-none" />
-				<Button 
-				label={"Login"} 
-				name={"login"} 
-				onClick={onSubmit} />
+				<Button
+					label={"Login"}
+					name={"login"}
+					onClick={onSubmit}
+					loading={loading}
+				/>
 			</div>
 		</Card>
 		<hr className="my-2 border-none" />
