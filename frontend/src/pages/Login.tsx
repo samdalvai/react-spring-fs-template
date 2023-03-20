@@ -31,11 +31,12 @@ export default function Login() {
 			<span>
 				<h1 className="text-slate-700 text-xl font-medium">Login to MemoryNotes</h1>
 			</span>
-			<span className="ml-3 p-3 bg-indigo-500 rounded-md shadow-md">
+			<span className="ml-3 p-3 bg-indigo-500 rounded-md shadow-md shadow-indigo-300">
 				<MemoryLogo />
 			</span>
 		</div>
 		{error ? <ErrorAlert message="Wrong username or password..." onClose={() => dispatch(resetError())} /> : null}
+		<hr className="my-2 border-none" />
 		<Card size="md">
 			<div className="flex flex-col w-4/5">
 				<InputField
