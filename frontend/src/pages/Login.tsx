@@ -26,12 +26,19 @@ export default function Login() {
 		return <Navigate to={"/"} />;
 	}
 
+	const isDarkModeEnabled = () => {
+		const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+		return darkModeQuery.matches;
+	  };
+
+	  console.log("Dark mode: ", isDarkModeEnabled())
+
 	return (<div>
 		<div className="py-5 text-xl flex items-center justify-center">
 			<span>
-				<h1 className="text-slate-700 text-xl font-medium">Login to MemoryNotes</h1>
+				<h1 className="text-slate-700 dark:text-white text-xl font-medium">Login to MemoryNotes</h1>
 			</span>
-			<span className="ml-3 p-3 bg-indigo-500 rounded-md shadow-md shadow-indigo-300">
+			<span className="ml-3 p-3 bg-indigo-500 rounded-md shadow-md">
 				<MemoryLogo />
 			</span>
 		</div>
