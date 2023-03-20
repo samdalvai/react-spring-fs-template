@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { loginAPI, logoutAPI, signupAPI } from '../services/authService';
 
-export const register = createAsyncThunk('auth/register', async (userData) => {
+export const signup = createAsyncThunk('auth/signup', async (userData) => {
     const response = await signupAPI(userData);
     return response.data;
 });

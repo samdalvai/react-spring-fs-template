@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, logout, register } from '../actions/authActions';
+import { login, logout, signup } from '../actions/authActions';
 
 interface AuthState {
     isAuthenticated: boolean;
@@ -21,16 +21,16 @@ const authSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(register.pending, (state) => {
+            .addCase(signup.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(register.fulfilled, (state, action) => {
+            .addCase(signup.fulfilled, (state, action) => {
                 state.loading = false;
                 state.isAuthenticated = true;
                 state.user = action.payload.user;
             })
-            .addCase(register.rejected, (state, action) => {
+            .addCase(signup.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
