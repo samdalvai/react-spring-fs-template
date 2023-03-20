@@ -8,28 +8,18 @@ import { RootState } from "../store";
 import { login } from '../actions/authActions';
 import { Navigate } from "react-router-dom";
 import ErrorAlert from "../components/ErrorAlert";
+import { resetError } from "../reducers/authReducer";
 
 export default function Login() {
 	const dispatch = useDispatch();
 	const [userEmail, setUserEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
-	const [showError, setShowError] = useState<boolean>(false);
 
-	const { isAuthenticated, loading, error, user } = useSelector((state: RootState) => state.auth);
-
-	/*console.log("isAuthenticated: ", isAuthenticated)
-	console.log("loading: ", loading)
-	console.log("error: ", error)
-	console.log("user: ", user)*/
+	const { isAuthenticated, loading, error } = useSelector((state: RootState) => state.auth);
 
 	const onSubmit = () => {
-		setShowError(false);
-
-		try {
-			dispatch(login({ email: userEmail, password: password }))
-		} catch (error) {
-			console.log("error")
-		}
+		dispatch(resetError())
+		dispatch(login({ email: userEmail, password: password }))
 	}
 
 	if (isAuthenticated) {
@@ -45,7 +35,7 @@ export default function Login() {
 				<MemoryLogo />
 			</span>
 		</div>
-		{showError ? <ErrorAlert message="Wrong username or password..." onClose={() => setShowError(false)} /> : null}
+		{error ? <ErrorAlert message="Wrong username or password..." onClose={() => dispatch(resetError())} /> : null}
 		<Card size="md">
 			<div className="flex flex-col w-4/5">
 				<InputField
