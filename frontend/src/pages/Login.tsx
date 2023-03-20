@@ -56,6 +56,8 @@ export default function Login() {
 				onClick={onSubmit} />
 			</div>
 		</Card>
+		<hr className="my-2 border-none" />
+		<Card />
 	</div>
 	)
 }

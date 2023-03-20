@@ -1,7 +1,7 @@
 import Header from "./Header";
-import { Props } from "../types/props";
+import { ChildrenProps } from "../types/props";
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children }: { children: ChildrenProps}) {
     return (
         <div className="h-screen w-screen bg-white flex items-center justify-center">
             {children}
