@@ -40,7 +40,7 @@ export default function Login() {
 					label={"Password"}
 					name={"password"}
 					value={password}
-					type={"text"} 
+					type={"password"} 
 					onChange={setPassword} />
 				<hr className="my-2 border-none" />
 				<Button 
