@@ -13,15 +13,23 @@ export default function Login() {
 	const dispatch = useDispatch();
 	const [userEmail, setUserEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
+	const [showError, setShowError] = useState<boolean>(false);
+
 	const { isAuthenticated, loading, error, user } = useSelector((state: RootState) => state.auth);
 
-	console.log("isAuthenticated: ", isAuthenticated)
+	/*console.log("isAuthenticated: ", isAuthenticated)
 	console.log("loading: ", loading)
 	console.log("error: ", error)
-	console.log("user: ", user)
+	console.log("user: ", user)*/
 
 	const onSubmit = () => {
-		dispatch(login({ email: userEmail, password: password }))
+		setShowError(false);
+
+		try {
+			dispatch(login({ email: userEmail, password: password }))
+		} catch (error) {
+			console.log("error")
+		}
 	}
 
 	if (isAuthenticated) {
@@ -37,7 +45,7 @@ export default function Login() {
 				<MemoryLogo />
 			</span>
 		</div>
-		<ErrorAlert message="Wrong username or password..." />
+		{showError ? <ErrorAlert message="Wrong username or password..." onClose={() => setShowError(false)} /> : null}
 		<Card size="md">
 			<div className="flex flex-col w-4/5">
 				<InputField
