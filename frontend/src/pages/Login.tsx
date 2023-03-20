@@ -5,18 +5,14 @@ import MemoryLogo from '../components/MemoryLogo';
 import InputField from './../components/InputField';
 import Button from "../components/Button";
 import { RootState } from "../store";
-import { login, logout } from '../actions/authActions';
+import { login } from '../actions/authActions';
 import { Navigate } from "react-router-dom";
 
 export default function Login() {
 	const dispatch = useDispatch();
 	const [userEmail, setUserEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
-	const authState = useSelector((state: RootState) => state.auth);
 	const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
-
-	console.log("authState: ", authState)
-	console.log("isAuthenticated: ", isAuthenticated)
 
 	const onSubmit = () => {
 		dispatch(login({email: userEmail, password: password}))
@@ -58,7 +54,7 @@ export default function Login() {
 		</Card>
 		<hr className="my-2 border-none" />
 		<Card size="sm">
-			<div className="font-medium">New to MemoryNotes? <a className="font-semibold underline text-indigo-500" href="/singup">Register</a></div>
+			<div><span className="font-medium">New to MemoryNotes? </span><a className="font-semibold underline text-indigo-500" href="/singup">Register</a></div>
 		</Card>
 	</div>
 	)
