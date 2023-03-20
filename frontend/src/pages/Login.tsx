@@ -35,7 +35,7 @@ export default function Login() {
 				<MemoryLogo />
 			</span>
 		</div>
-		<Card>
+		<Card size="md">
 			<div className="flex flex-col w-4/5">
 				<InputField
 					label={"Email"}
@@ -57,7 +57,9 @@ export default function Login() {
 			</div>
 		</Card>
 		<hr className="my-2 border-none" />
-		<Card />
+		<Card size="sm">
+			<div className="font-medium">New to MemoryNotes? <a className="font-semibold underline text-indigo-500" href="/singup">Register</a></div>
+		</Card>
 	</div>
 	)
 }
