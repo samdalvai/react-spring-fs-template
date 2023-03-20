@@ -1,7 +1,7 @@
 export default function Button({ label, name, loading = false, onClick }: { label: string, name: string, loading?: boolean, onClick: (arg: void) => void }) {
     return (
         <button
-            className="flex items-center justify-center py-2 px-4 h-10 text-sm font-semibold rounded-md shadow-md text-slate-100 bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-300"
+            className="flex items-center justify-center py-2 px-4 h-10 text-sm font-semibold rounded-md shadow-md text-slate-100 bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-300 transition ease-in-out duration-150"
             name={name}
             onClick={() => onClick()}
         >
