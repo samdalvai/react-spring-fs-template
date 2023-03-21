@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URISyntaxException;
 
 @RestController
+@RequestMapping("/api/auth")
 public class UserController {
 
     private final UserRepository userRepository;

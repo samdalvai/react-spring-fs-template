@@ -1,6 +1,6 @@
 import client from "./client";
 
-const baseUrl = '';
+const baseUrl = 'api/auth';
 
 export const signupAPI = async (userData: any) => {
     const response = await client.post(`${baseUrl}/signup`, userData);
