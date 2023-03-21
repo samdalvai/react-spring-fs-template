@@ -9,7 +9,7 @@ export default function Card({ size, children }: { size: Size, children: Childre
     const heightClass = heights[size]
 
     return (
-        <div className={`${heightClass} w-80 md:w-96 mx-2 bg-gray-100 shadow-md rounded-md flex items-center justify-center`}>
+        <div className={`${heightClass} w-80 md:w-96 mx-2 bg-gray-100 shadow-md border-2 rounded-md flex items-center justify-center`}>
             {children}
         </div>
     )
