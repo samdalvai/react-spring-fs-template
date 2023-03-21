@@ -18,7 +18,6 @@ and a frontend application with `React`.
 
 * Java 1.8 or higher.
 * Maven
-* Docker
 
 ### How to run
 
@@ -69,3 +68,6 @@ Access the application at http://localhost:3000 in the browser.
 > docker rm my-postgres-container
 
 * You can access the database with any management tool, for example `pgAdmin` by connecting to `https://localhot:5432`, please look in the `Dockerfile` inside the `db/` folder for the credentials.
+
+# Author
+Samuel Dalvai, samuel.dalvai@gmail.com
