@@ -15,7 +15,8 @@ export default function Login() {
 	const [userEmail, setUserEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 
-	const { isAuthenticated, loading, error } = useSelector((state: RootState) => state.auth);
+	const { isAuthenticated, loading, error, user } = useSelector((state: RootState) => state.auth);
+	console.log("User in login page: ", user)
 
 	const onSubmit = () => {
 		dispatch(resetError())
