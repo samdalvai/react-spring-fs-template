@@ -6,6 +6,7 @@ import com.memorynotes.authentication.requests.LoginResponse;
 import com.memorynotes.authentication.requests.SignUpRequest;
 import com.memorynotes.model.User;
 import com.memorynotes.repository.UserRepository;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.net.URISyntaxException;
 
 @RestController
 @RequestMapping("/api/auth")
+@DependsOn("securityFilterChain")
 public class AuthController {
 
     private final UserRepository userRepository;
