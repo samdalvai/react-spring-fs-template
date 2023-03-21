@@ -14,11 +14,11 @@ import java.net.URISyntaxException;
 
 @RestController
 @RequestMapping("/api/auth")
-public class UserController {
+public class AuthController {
 
     private final UserRepository userRepository;
 
-    public UserController(UserRepository userRepository) {
+    public AuthController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
