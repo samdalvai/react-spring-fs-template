@@ -2,6 +2,7 @@ package com.memorynotes.controller;
 
 import com.memorynotes.authentication.hash.PasswordUtils;
 import com.memorynotes.authentication.requests.LoginRequest;
+import com.memorynotes.authentication.requests.LoginResponse;
 import com.memorynotes.authentication.requests.SignUpRequest;
 import com.memorynotes.model.User;
 import com.memorynotes.repository.UserRepository;
@@ -37,7 +38,7 @@ public class UserController {
         String hashedPasswordWithSalt = PasswordUtils.hashPassword(requestPassword + userSalt);
 
         if (hashedPasswordWithSalt.equals(userPassword)) {
-            return ResponseEntity.ok("Login successful!");
+            return ResponseEntity.status((HttpStatus.OK)).body(LoginResponse.fromUserData(user));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
