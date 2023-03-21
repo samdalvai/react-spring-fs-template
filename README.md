@@ -18,7 +18,6 @@ and a frontend application with `React`.
 
 * Java 1.8 or higher.
 * Maven
-* Docker
 
 ### How to run
 

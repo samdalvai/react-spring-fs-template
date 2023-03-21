@@ -25,14 +25,7 @@ export default function Login() {
 	if (isAuthenticated) {
 		return <Navigate to={"/"} />;
 	}
-
-	const isDarkModeEnabled = () => {
-		const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-		return darkModeQuery.matches;
-	  };
-
-	  console.log("Dark mode: ", isDarkModeEnabled())
-
+	
 	return (<div>
 		<div className="py-5 text-xl flex items-center justify-center">
 			<span>
@@ -69,7 +62,7 @@ export default function Login() {
 		</Card>
 		<hr className="my-2 border-none" />
 		<Card size="sm">
-			<div><span className="font-medium">New to MemoryNotes? </span><a className="font-semibold underline text-indigo-500 hover:text-indigo-900 transition ease-out duration-150" href="/singup">Register</a></div>
+			<div><span className="font-medium">New to MemoryNotes? </span><a className="font-semibold underline text-indigo-500 hover:text-indigo-900 transition ease-out duration-150" href="/signup">Register</a></div>
 		</Card>
 	</div>
 	)
