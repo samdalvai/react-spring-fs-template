@@ -17,7 +17,6 @@ public class User implements UserDetails {
   private String password;
   private String nickname;
   private Date createdAt;
-  private Date updatedAt;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
