@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.RememberMeServices;
 
 @SpringBootApplication
 public class App {
@@ -17,18 +18,26 @@ public class App {
         SpringApplication.run(App.class, args);
     }
 
-    @Bean
+    @Autowired
+    private ConfigurableBeanFactory beanFactory;
+
+    @Bean("securityFilterChain")
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
+        var chain = http
                 .authorizeHttpRequests(customizer -> customizer
+                        .requestMatchers("/api/auth/signup").permitAll()
                         .requestMatchers("/api/auth/login").permitAll()
-                        .requestMatchers("/api/auth/signup").permitAll() // TODO: REMOVE THIS AND REQUIRE AUTHENTICATION
-                        .requestMatchers("/api/**").authenticated()
+                        .requestMatchers("/**").authenticated()
                         .anyRequest().denyAll())
-                .csrf().disable()
+                .csrf().disable() //TODO: ENABLE CSRF FOR THE APPLICATION SEE: https://shzhangji.com/blog/2023/01/15/restful-api-authentication-with-spring-security/
                 .exceptionHandling(customizer -> customizer
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
+                .rememberMe(customizer -> customizer.alwaysRemember(true).key("demo"))
                 .build();
-    }
 
+        var rememberMeServices = http.getSharedObject(RememberMeServices.class);
+        beanFactory.registerSingleton("rememberMeServices", rememberMeServices);
+
+        return chain;
+    }
 }
