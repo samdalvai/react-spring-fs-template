@@ -66,11 +66,11 @@ public class AuthController {
     return new CurrentUser(user.getId(), user.getNickname());
   }
 
-  @GetMapping("/csrf")
+  /*@GetMapping("/csrf")
   public CsrfResponse csrf(HttpServletRequest request) {
     var csrf = (CsrfToken) request.getAttribute("_csrf");
     return new CsrfResponse(csrf.getToken());
-  }
+  }*/
 
   public record CurrentUser(Integer id, String nickname) {}
   public record LogoutResponse() {}
