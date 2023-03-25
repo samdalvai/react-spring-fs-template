@@ -13,29 +13,30 @@ import org.springframework.security.web.authentication.RememberMeServices;
 
 @SpringBootApplication
 public class DemoApplication {
-  public static void main(String[] args) {
-    SpringApplication.run(DemoApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
 
-  @Autowired
-  private ConfigurableBeanFactory beanFactory;
+    @Autowired
+    private ConfigurableBeanFactory beanFactory;
 
-  @Bean("securityFilterChain")
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    var chain = http
-        .authorizeHttpRequests(customizer -> customizer
-            .requestMatchers("/api/csrf").permitAll()
-            .requestMatchers("/api/login").permitAll()
-            .requestMatchers("/api/**").authenticated()
-            .anyRequest().denyAll())
-        .exceptionHandling(customizer -> customizer
-            .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
-        .rememberMe(customizer -> customizer.alwaysRemember(true).key("demo"))
-        .build();
+    @Bean("securityFilterChain")
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        var chain = http
+                .authorizeHttpRequests(customizer -> customizer
+                        .requestMatchers("/api/csrf").permitAll()
+                        .requestMatchers("/api/login").permitAll()
+                        .requestMatchers("/api/**").authenticated()
+                        .anyRequest().denyAll())
+                .csrf().disable() //TODO: ENABLE CSRF FOR THE APPLICATION SEE: https://shzhangji.com/blog/2023/01/15/restful-api-authentication-with-spring-security/
+                .exceptionHandling(customizer -> customizer
+                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
+                .rememberMe(customizer -> customizer.alwaysRemember(true).key("demo"))
+                .build();
 
-    var rememberMeServices = http.getSharedObject(RememberMeServices.class);
-    beanFactory.registerSingleton("rememberMeServices", rememberMeServices);
+        var rememberMeServices = http.getSharedObject(RememberMeServices.class);
+        beanFactory.registerSingleton("rememberMeServices", rememberMeServices);
 
-    return chain;
-  }
+        return chain;
+    }
 }
