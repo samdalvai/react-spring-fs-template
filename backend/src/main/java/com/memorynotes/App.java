@@ -22,6 +22,7 @@ public class App {
         return http
                 .authorizeHttpRequests(customizer -> customizer
                         .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/api/auth/signup").permitAll() // TODO: REMOVE THIS AND REQUIRE AUTHENTICATION
                         .requestMatchers("/api/**").authenticated()
                         .anyRequest().denyAll())
                 .csrf().disable()

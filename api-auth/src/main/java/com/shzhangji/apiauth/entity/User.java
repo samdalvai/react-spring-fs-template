@@ -18,6 +18,14 @@ public class User implements UserDetails {
   private String nickname;
   private Date createdAt;
 
+  public User(Integer id, String username, String password, String nickname, Date createdAt) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.nickname = nickname;
+    this.createdAt = createdAt;
+  }
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return Set.of();
