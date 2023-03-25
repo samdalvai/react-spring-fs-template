@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-class DemoApplicationTest {
+class AppTest {
   @Test
   void testGeneratePassword() {
     var encoder = new BCryptPasswordEncoder();

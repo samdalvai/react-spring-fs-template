@@ -12,9 +12,9 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.RememberMeServices;
 
 @SpringBootApplication
-public class DemoApplication {
+public class App {
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(App.class, args);
     }
 
     @Autowired
