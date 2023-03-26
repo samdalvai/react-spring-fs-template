@@ -10,6 +10,6 @@ class AppTest {
     var encoder = new BCryptPasswordEncoder();
     var password = encoder.encode("888888");
     Assertions.assertTrue(encoder.matches("888888", password));
-    System.out.println("{bcrypt}" + password);
+    System.out.println("password: " + password);
   }
 }

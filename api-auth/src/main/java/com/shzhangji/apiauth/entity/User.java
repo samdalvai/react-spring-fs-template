@@ -21,6 +21,8 @@ public class User implements UserDetails {
 
     private String password;
 
+    private String salt;
+
     private String nickname;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -31,9 +33,10 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String password, String nickname, Date createdAt) {
+    public User(String username, String password, String salt, String nickname, Date createdAt) {
         this.username = username;
         this.password = password;
+        this.salt = salt;
         this.nickname = nickname;
         this.createdAt = createdAt;
     }
@@ -79,6 +82,14 @@ public class User implements UserDetails {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     public String getNickname() {
