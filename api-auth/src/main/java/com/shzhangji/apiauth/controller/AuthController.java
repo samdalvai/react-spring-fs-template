@@ -29,48 +29,48 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
 
-  private final RememberMeServices rememberMeServices;
+    private final RememberMeServices rememberMeServices;
 
-  public AuthController(RememberMeServices rememberMeServices) {
-    this.rememberMeServices = rememberMeServices;
-  }
-
-  @PostMapping("/login")
-  public CurrentUser login(@Valid @RequestBody LoginForm form, BindingResult bindingResult,
-                           HttpServletRequest request, HttpServletResponse response) {
-
-    if (request.getUserPrincipal() != null) {
-      throw new AppException("Please logout first.");
+    public AuthController(RememberMeServices rememberMeServices) {
+        this.rememberMeServices = rememberMeServices;
     }
 
-    if (bindingResult.hasErrors()) {
-      throw new AppException("Invalid username or password");
+    @PostMapping("/login")
+    public CurrentUser login(@Valid @RequestBody LoginForm form, BindingResult bindingResult,
+                             HttpServletRequest request, HttpServletResponse response) {
+
+        if (request.getUserPrincipal() != null) {
+            throw new AppException("Please logout first.");
+        }
+
+        if (bindingResult.hasErrors()) {
+            throw new AppException("Invalid username or password");
+        }
+
+        try {
+            request.login(form.getUsername(), form.getPassword());
+        } catch (ServletException e) {
+            throw new AppException("Invalid username or password");
+        }
+
+        var auth = (Authentication) request.getUserPrincipal();
+        var user = (User) auth.getPrincipal();
+        log.info("User {} logged in.", user.getUsername());
+
+        rememberMeServices.loginSuccess(request, response, auth);
+        return new CurrentUser(user.getId(), user.getNickname());
     }
 
-    try {
-      request.login(form.getUsername(), form.getPassword());
-    } catch (ServletException e) {
-      throw new AppException("Invalid username or password");
+    @PostMapping("/logout")
+    public LogoutResponse logout(HttpServletRequest request) throws ServletException {
+        request.logout();
+        return new LogoutResponse();
     }
 
-    var auth = (Authentication) request.getUserPrincipal();
-    var user = (User) auth.getPrincipal();
-    log.info("User {} logged in.", user.getUsername());
-
-    rememberMeServices.loginSuccess(request, response, auth);
-    return new CurrentUser(user.getId(), user.getNickname());
-  }
-
-  @PostMapping("/logout")
-  public LogoutResponse logout(HttpServletRequest request) throws ServletException {
-    request.logout();
-    return new LogoutResponse();
-  }
-
-  @GetMapping("/current-user")
-  public CurrentUser getCurrentUser(@AuthenticationPrincipal User user) {
-    return new CurrentUser(user.getId(), user.getNickname());
-  }
+    @GetMapping("/current-user")
+    public CurrentUser getCurrentUser(@AuthenticationPrincipal User user) {
+        return new CurrentUser(user.getId(), user.getNickname());
+    }
 
   /*@GetMapping("/csrf")
   public CsrfResponse csrf(HttpServletRequest request) {
@@ -78,7 +78,12 @@ public class AuthController {
     return new CsrfResponse(csrf.getToken());
   }*/
 
-  public record CurrentUser(Integer id, String nickname) {}
-  public record LogoutResponse() {}
-  public record CsrfResponse(String token) {}
+    public record CurrentUser(Integer id, String nickname) {
+    }
+
+    public record LogoutResponse() {
+    }
+
+    public record CsrfResponse(String token) {
+    }
 }

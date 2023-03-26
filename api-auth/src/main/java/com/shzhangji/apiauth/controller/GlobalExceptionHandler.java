@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  @ExceptionHandler(AppException.class)
-  public AppExceptionResponse handleAppException(AppException e) {
-    return new AppExceptionResponse(e.getMessage(), e.getCode());
-  }
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(AppException.class)
+    public AppExceptionResponse handleAppException(AppException e) {
+        return new AppExceptionResponse(e.getMessage(), e.getCode());
+    }
 
-  public record AppExceptionResponse(String message, int code) { }
+    public record AppExceptionResponse(String message, int code) {
+    }
 }
