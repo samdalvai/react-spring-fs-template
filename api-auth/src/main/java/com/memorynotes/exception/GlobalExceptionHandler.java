@@ -1,4 +1,4 @@
-package com.memorynotes.controller;
+package com.memorynotes.exception;
 
 import com.memorynotes.AppException;
 import org.springframework.http.HttpStatus;

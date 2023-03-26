@@ -9,4 +9,5 @@ CREATE TABLE public.user
   created_at TIMESTAMP NOT NULL
 );
 
-INSERT INTO public.user VALUES (1, 'test', 'test@test.it', 'password', NOW());
+-- 5f4dcc3b5aa765d61d8327deb882cf99 is the MD5 encryption of the string password
+INSERT INTO public.user VALUES (1, 'test', 'test@test.it', '5f4dcc3b5aa765d61d8327deb882cf99', NOW());
