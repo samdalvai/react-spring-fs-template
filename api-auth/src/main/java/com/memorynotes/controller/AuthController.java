@@ -61,7 +61,7 @@ public class AuthController {
         return new LogoutResponse();
     }
 
-    @GetMapping("/current-user")
+    @GetMapping("/user")
     public CurrentUser getCurrentUser(@AuthenticationPrincipal User user) {
         return new CurrentUser(user.getId(), user.getUsername(), user.getEmail());
     }
