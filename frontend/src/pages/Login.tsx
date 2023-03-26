@@ -5,7 +5,7 @@ import MemoryLogo from '../components/MemoryLogo';
 import InputField from './../components/InputField';
 import Button from "../components/Button";
 import { RootState } from "../store";
-import { login } from '../actions/authActions';
+import { login } from '../reducers/authReducer'
 import { Navigate } from "react-router-dom";
 import ErrorAlert from "../components/ErrorAlert";
 import { resetError } from "../reducers/authReducer";

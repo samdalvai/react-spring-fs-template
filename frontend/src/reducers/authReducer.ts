@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, logout, signup } from '../actions/authActions';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { loginAPI, logoutAPI, signupAPI } from '../services/authService';
 
 interface AuthState {
     isAuthenticated: boolean;
@@ -14,6 +15,20 @@ const initialState: AuthState = {
     loading: false,
     error: null,
 };
+
+export const signup = createAsyncThunk('auth/signup', async (userData) => {
+    const response = await signupAPI(userData);
+    return response.data;
+});
+
+export const login = createAsyncThunk('auth/login', async (userData) => {
+    const response = await loginAPI(userData);
+    return response.data;
+});
+
+export const logout = createAsyncThunk('auth/logout', async () => {
+    await logoutAPI();
+});
 
 const authSlice = createSlice({
     name: 'auth',
