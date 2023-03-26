@@ -1,4 +1,4 @@
-package com.shzhangji.apiauth;
+package com.memorynotes;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

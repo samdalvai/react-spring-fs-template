@@ -1,4 +1,4 @@
-package com.shzhangji.apiauth.entity;
+package com.memorynotes.model;
 
 import java.util.Collection;
 import java.util.Date;
@@ -106,5 +106,17 @@ public class User implements UserDetails {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

@@ -1,6 +1,6 @@
-package com.shzhangji.apiauth.service;
+package com.memorynotes.service;
 
-import com.shzhangji.apiauth.repository.UserRepository;
+import com.memorynotes.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

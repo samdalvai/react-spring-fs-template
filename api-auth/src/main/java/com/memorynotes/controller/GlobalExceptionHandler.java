@@ -1,6 +1,6 @@
-package com.shzhangji.apiauth.controller;
+package com.memorynotes.controller;
 
-import com.shzhangji.apiauth.AppException;
+import com.memorynotes.AppException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

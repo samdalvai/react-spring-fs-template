@@ -1,8 +1,8 @@
-package com.shzhangji.apiauth.controller;
+package com.memorynotes.controller;
 
-import com.shzhangji.apiauth.AppException;
-import com.shzhangji.apiauth.entity.User;
-import com.shzhangji.apiauth.form.LoginForm;
+import com.memorynotes.AppException;
+import com.memorynotes.form.LoginForm;
+import com.memorynotes.model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -48,6 +48,7 @@ public class AuthController {
 
         var auth = (Authentication) request.getUserPrincipal();
         var user = (User) auth.getPrincipal();
+        System.out.println("User: " + user);
         log.info("User {} logged in.", user.getUsername());
 
         rememberMeServices.loginSuccess(request, response, auth);

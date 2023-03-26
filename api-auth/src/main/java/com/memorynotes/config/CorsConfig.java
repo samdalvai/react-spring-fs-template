@@ -1,4 +1,4 @@
-package com.shzhangji.apiauth.config;
+package com.memorynotes.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

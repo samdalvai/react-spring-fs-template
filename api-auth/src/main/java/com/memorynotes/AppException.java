@@ -1,4 +1,4 @@
-package com.shzhangji.apiauth;
+package com.memorynotes;
 
 import lombok.Getter;
 
