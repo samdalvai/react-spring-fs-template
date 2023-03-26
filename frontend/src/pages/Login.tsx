@@ -12,7 +12,7 @@ import { resetError } from "../reducers/authReducer";
 
 export default function Login() {
 	const dispatch = useDispatch();
-	const [userEmail, setUserEmail] = useState<string>("");
+	const [userName, setUserName] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 
 	const { isAuthenticated, loading, error, user } = useSelector((state: RootState) => state.auth);
@@ -20,7 +20,7 @@ export default function Login() {
 
 	const onSubmit = () => {
 		dispatch(resetError())
-		dispatch(login({ email: userEmail, password: password }))
+		dispatch(login({ username: userName, password: password }))
 	}
 
 	if (isAuthenticated) {
@@ -41,11 +41,11 @@ export default function Login() {
 		<Card size="md">
 			<div className="flex flex-col w-4/5">
 				<InputField
-					label={"Email"}
-					name={"email"}
-					value={userEmail}
-					type={"email"}
-					onChange={setUserEmail} />
+					label={"Username"}
+					name={"username"}
+					value={userName}
+					type={"text"}
+					onChange={setUserName} />
 				<InputField
 					label={"Password"}
 					name={"password"}
