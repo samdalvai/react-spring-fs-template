@@ -19,10 +19,10 @@ public class HashUtils {
         }
     }
 
-    public static String generateSalt() {
+    public static String generateSalt(int length) {
         SecureRandom random = new SecureRandom();
 
-        byte[] salt = new byte[16];
+        byte[] salt = new byte[length];
         random.nextBytes(salt);
 
         return hex(salt);
