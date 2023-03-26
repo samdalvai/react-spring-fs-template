@@ -1,6 +1,6 @@
 package com.memorynotes.authentication;
 
-import com.memorynotes.hash.HashUtils;
+import com.memorynotes.authentication.hash.HashUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class CustomPasswordEncoder implements PasswordEncoder {

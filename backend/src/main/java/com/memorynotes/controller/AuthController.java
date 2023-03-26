@@ -1,71 +1,83 @@
 package com.memorynotes.controller;
 
-import com.memorynotes.authentication.hash.PasswordUtils;
-import com.memorynotes.authentication.requests.LoginRequest;
-import com.memorynotes.authentication.requests.LoginResponse;
-import com.memorynotes.authentication.requests.SignUpRequest;
+import com.memorynotes.AppException;
+import com.memorynotes.form.LoginForm;
 import com.memorynotes.model.User;
-import com.memorynotes.repository.UserRepository;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.DependsOn;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.web.authentication.RememberMeServices;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URISyntaxException;
-
+@Slf4j
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api")
 @DependsOn("securityFilterChain")
 public class AuthController {
 
-    private final UserRepository userRepository;
 
-    public AuthController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    private final RememberMeServices rememberMeServices;
+
+    public AuthController(RememberMeServices rememberMeServices) {
+        this.rememberMeServices = rememberMeServices;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) throws URISyntaxException {
-        String requestEmail = loginRequest.getEmail();
-        String requestPassword = loginRequest.getPassword();
+    public CurrentUser login(@Valid @RequestBody LoginForm form, BindingResult bindingResult,
+                             HttpServletRequest request, HttpServletResponse response) {
 
-        User user = userRepository.findUserByEmail(requestEmail);
-
-        if (user == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+        if (request.getUserPrincipal() != null) {
+            throw new AppException("Please logout first.");
         }
 
-        String userSalt = user.getSalt();
-        String userPassword = user.getPassword();
-
-        String hashedPasswordWithSalt = PasswordUtils.hashPassword(requestPassword + userSalt);
-
-        if (hashedPasswordWithSalt.equals(userPassword)) {
-            return ResponseEntity.status((HttpStatus.OK)).body(LoginResponse.fromUserData(user));
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+        if (bindingResult.hasErrors()) {
+            throw new AppException("Invalid username or password");
         }
+
+        try {
+            request.login(form.getUsername(), form.getPassword());
+        } catch (ServletException e) {
+            throw new AppException("Invalid username or password");
+        }
+
+        var auth = (Authentication) request.getUserPrincipal();
+        var user = (User) auth.getPrincipal();
+        System.out.println("User: " + user);
+        log.info("User {} logged in.", user.getUsername());
+
+        rememberMeServices.loginSuccess(request, response, auth);
+        return new CurrentUser(user.getId(), user.getUsername(), user.getEmail());
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody SignUpRequest signUpRequest) throws URISyntaxException {
-        if (signUpRequest.getName() == null || signUpRequest.getName().isEmpty() ||
-                signUpRequest.getEmail() == null || signUpRequest.getEmail().isEmpty() ||
-                signUpRequest.getPassword() == null || signUpRequest.getPassword().isEmpty()
-        ) {
-            throw new IllegalArgumentException("Name and email fields are required");
-        }
+    @PostMapping("/logout")
+    public LogoutResponse logout(HttpServletRequest request) throws ServletException {
+        request.logout();
+        return new LogoutResponse();
+    }
 
-        User newUser = new User();
-        newUser.setName(signUpRequest.getName());
-        newUser.setEmail(signUpRequest.getEmail());
+    @GetMapping("/user")
+    public CurrentUser getCurrentUser(@AuthenticationPrincipal User user) {
+        return new CurrentUser(user.getId(), user.getUsername(), user.getEmail());
+    }
 
-        String salt = PasswordUtils.generateSalt();
-        newUser.setPassword(PasswordUtils.hashPassword(signUpRequest.getPassword() + salt));
-        newUser.setSalt(salt);
+  /*@GetMapping("/csrf")
+  public CsrfResponse csrf(HttpServletRequest request) {
+    var csrf = (CsrfToken) request.getAttribute("_csrf");
+    return new CsrfResponse(csrf.getToken());
+  }*/
 
-        userRepository.save(newUser);
+    public record CurrentUser(Integer id, String username, String email) {
+    }
 
-        return ResponseEntity.ok("User with ID " + newUser.getId() + " created.");
+    public record LogoutResponse() {
+    }
+
+    public record CsrfResponse(String token) {
     }
 }
