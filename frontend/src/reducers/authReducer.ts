@@ -16,18 +16,29 @@ const initialState: AuthState = {
     error: null,
 };
 
-export const signup = createAsyncThunk('auth/signup', async (userData) => {
-    const response = await signupAPI(userData);
-    return response.data;
-});
+export type UserLoginData = {
+    username: String,
+    password: String
+}
 
-export const login = createAsyncThunk('auth/login', async (userData) => {
+export type UserSignupData = {
+    username: String,
+    email: String,
+    password: String
+}
+
+export const login = createAsyncThunk('auth/login', async (userData: UserLoginData) => {
     const response = await loginAPI(userData);
     return response.data;
 });
 
 export const logout = createAsyncThunk('auth/logout', async () => {
     await logoutAPI();
+});
+
+export const signup = createAsyncThunk('auth/signup', async (userData: UserSignupData) => {
+    const response = await signupAPI(userData);
+    return response.data;
 });
 
 const authSlice = createSlice({
@@ -40,19 +51,6 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(signup.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(signup.fulfilled, (state, action) => {
-                state.loading = false;
-                state.isAuthenticated = true;
-                state.user = action.payload.user;
-            })
-            .addCase(signup.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
-            })
             .addCase(login.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -76,6 +74,19 @@ const authSlice = createSlice({
                 state.user = null;
             })
             .addCase(logout.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(signup.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(signup.fulfilled, (state, action) => {
+                state.loading = false;
+                state.isAuthenticated = true;
+                state.user = action.payload.user;
+            })
+            .addCase(signup.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             });

@@ -9,9 +9,10 @@ import { login } from '../reducers/authReducer'
 import { Navigate } from "react-router-dom";
 import ErrorAlert from "../components/ErrorAlert";
 import { resetError } from "../reducers/authReducer";
+import { ThunkDispatch } from "redux-thunk";
 
 export default function Login() {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 	const [userName, setUserName] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 
