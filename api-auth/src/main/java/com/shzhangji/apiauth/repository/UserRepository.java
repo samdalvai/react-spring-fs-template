@@ -1,12 +1,11 @@
 package com.shzhangji.apiauth.repository;
 
 import com.shzhangji.apiauth.entity.User;
-import java.util.Optional;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
   Optional<User> findByUsername(String username);
 }
 

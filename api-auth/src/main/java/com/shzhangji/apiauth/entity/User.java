@@ -1,25 +1,41 @@
 package com.shzhangji.apiauth.entity;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Set;
-import lombok.Data;
-import org.springframework.data.relational.core.mapping.Table;
+
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Data
-@Table
+@Entity
+@Table(name = "user", schema = "public")
 public class User implements UserDetails {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
+
+  @Column(unique = true)
   private String username;
+
   private String password;
+
   private String nickname;
+
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "created_at")
   private Date createdAt;
 
-  public User(Integer id, String username, String password, String nickname, Date createdAt) {
-    this.id = id;
+  /*private boolean accountNonExpired = true;
+  private boolean accountNonLocked = true;
+  private boolean credentialsNonExpired = true;
+  private boolean enabled = true;*/
+
+
+  public User() {}
+
+  public User(String username, String password, String nickname, Date createdAt) {
     this.username = username;
     this.password = password;
     this.nickname = nickname;
@@ -29,6 +45,16 @@ public class User implements UserDetails {
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return Set.of();
+  }
+
+  @Override
+  public String getPassword() {
+    return password;
+  }
+
+  @Override
+  public String getUsername() {
+    return username;
   }
 
   @Override
@@ -49,5 +75,31 @@ public class User implements UserDetails {
   @Override
   public boolean isEnabled() {
     return true;
+  }
+
+  // Getters and setters
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public String getNickname() {
+    return nickname;
+  }
+
+  public void setNickname(String nickname) {
+    this.nickname = nickname;
+  }
+
+  public Date getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
   }
 }
