@@ -19,11 +19,9 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String username;
 
+    @Column(unique = true)
+    private String email;
     private String password;
-
-    private String salt;
-
-    private String nickname;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
@@ -33,11 +31,10 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String password, String salt, String nickname, Date createdAt) {
+    public User(String username, String email, String password, Date createdAt) {
         this.username = username;
+        this.email = email;
         this.password = password;
-        this.salt = salt;
-        this.nickname = nickname;
         this.createdAt = createdAt;
     }
 
@@ -84,20 +81,20 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getSalt() {
-        return salt;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
+    public String getEmail() {
+        return email;
     }
 
-    public String getNickname() {
-        return nickname;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getCreatedAt() {
@@ -108,15 +105,5 @@ public class User implements UserDetails {
         this.createdAt = createdAt;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", salt='" + salt + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
-    }
+
 }

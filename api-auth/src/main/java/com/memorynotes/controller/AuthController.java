@@ -52,7 +52,7 @@ public class AuthController {
         log.info("User {} logged in.", user.getUsername());
 
         rememberMeServices.loginSuccess(request, response, auth);
-        return new CurrentUser(user.getId(), user.getNickname());
+        return new CurrentUser(user.getId(), user.getUsername());
     }
 
     @PostMapping("/logout")
@@ -63,7 +63,7 @@ public class AuthController {
 
     @GetMapping("/current-user")
     public CurrentUser getCurrentUser(@AuthenticationPrincipal User user) {
-        return new CurrentUser(user.getId(), user.getNickname());
+        return new CurrentUser(user.getId(), user.getUsername());
     }
 
   /*@GetMapping("/csrf")
@@ -72,7 +72,7 @@ public class AuthController {
     return new CsrfResponse(csrf.getToken());
   }*/
 
-    public record CurrentUser(Integer id, String nickname) {
+    public record CurrentUser(Integer id, String username) {
     }
 
     public record LogoutResponse() {
