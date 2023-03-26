@@ -1,5 +1,6 @@
 package com.memorynotes.config;
 
+import com.memorynotes.authentication.CustomPasswordEncoder;
 import com.memorynotes.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -46,8 +47,7 @@ public class SecurityConfiguration {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance(); // Use this to disable password encryption
-        //return new BCryptPasswordEncoder();
+        return CustomPasswordEncoder.getInstance();
     }
 
 }
