@@ -1,28 +1,23 @@
 package com.shzhangji.apiauth.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.RememberMeServices;
-
-import static org.springframework.security.config.Customizer.withDefaults;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    @Autowired
-    private ConfigurableBeanFactory beanFactory;
-
     @Bean("securityFilterChain")
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        var chain = http
+        return http
                 .authorizeHttpRequests(customizer -> customizer
                         .requestMatchers("/api/csrf").permitAll()
                         .requestMatchers("/api/login").permitAll()
@@ -33,11 +28,11 @@ public class SecurityConfiguration {
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .rememberMe(customizer -> customizer.alwaysRemember(true).key("demo"))
                 .build();
+    }
 
-        var rememberMeServices = http.getSharedObject(RememberMeServices.class);
-        beanFactory.registerSingleton("rememberMeServices", rememberMeServices);
-
-        return chain;
+    @Bean
+    RememberMeServices rememberMeServices(UserDetailsService userDetailsService) {
+        return new TokenBasedRememberMeServices("demo", userDetailsService);
     }
 
 }
