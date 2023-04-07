@@ -23,6 +23,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(customizer -> customizer
                         .requestMatchers("/api/auth/csrf").permitAll()
                         .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/api/signup").permitAll()
                         .requestMatchers("/api/**").authenticated()
                         .anyRequest().denyAll())
                 .csrf().disable() //TODO: ENABLE CSRF FOR THE APPLICATION SEE: https://shzhangji.com/blog/2023/01/15/restful-api-authentication-with-spring-security/
