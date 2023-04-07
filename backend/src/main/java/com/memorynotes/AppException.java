@@ -4,7 +4,7 @@ import lombok.Getter;
 
 public class AppException extends RuntimeException {
     @Getter
-    private int code;
+    private final int code;
 
     public AppException(String message) {
         this(message, 400);

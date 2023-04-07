@@ -95,7 +95,7 @@ public class AuthController {
         log.info("User {} successfully signed up", form);
 
         return new CurrentUser(newUser.getId(), newUser.getUsername(), newUser.getEmail());
-    };
+    }
 
     @GetMapping("/user")
     public CurrentUser getCurrentUser(@AuthenticationPrincipal User user) {
