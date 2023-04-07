@@ -10,4 +10,4 @@ CREATE TABLE public.user
 );
 
 -- 'a850c6ccfb92cba03f7fb1b0fb1158fb' is the MD5 encryption of the string 'password' salted with the string '62bb083487480eec82cb5df74431a14a'
-INSERT INTO public.user VALUES (1, 'test', 'test@test.it', 'a850c6ccfb92cba03f7fb1b0fb1158fb$62bb083487480eec82cb5df74431a14a', NOW());
+--INSERT INTO public.user VALUES (1, 'test', 'test@test.it', 'a850c6ccfb92cba03f7fb1b0fb1158fb$62bb083487480eec82cb5df74431a14a', NOW());
