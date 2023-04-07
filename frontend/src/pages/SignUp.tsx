@@ -74,6 +74,7 @@ export default function SignUp() {
                         <div className="w-1/3 mr-1">
                             <Button
                                 label={<BackIcon />}
+                                color="grey"
                                 name={"back"}
                                 onClick={() => handleBack()}
                                 loading={loading}

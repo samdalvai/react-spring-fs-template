@@ -72,7 +72,7 @@ export default function Login() {
 			<Card size="sm">
 				<div>
 					<span className="font-medium">New to MemoryNotes? </span>
-					<a className="font-semibold underline text-indigo-500 hover:text-indigo-900 transition ease-out duration-150" onClick={handleSignup}>Register</a>
+					<a className="font-semibold underline text-indigo-500 hover:text-indigo-900 hover:cursor-pointer transition ease-out duration-150" onClick={handleSignup}>Register</a>
 				</div>
 			</Card>
 		</div>

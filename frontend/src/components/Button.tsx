@@ -1,9 +1,18 @@
 import { ReactNode } from "react";
+import { Color } from "../types/props";
 
-export default function Button({ label, name, loading = false, onClick }: { label: string | ReactNode, name: string, loading?: boolean, onClick: () => void }) {
+export default function Button({ label, name, color = 'indigo', loading = false, onClick }: { label: string | ReactNode, name: string, color?: Color, loading?: boolean, onClick: () => void }) {
+    const colors = {
+        indigo: 'text-slate-100 bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus:ring-indigo-300',
+        blue: 'text-slate-100 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus:ring-blue-300',
+        grey: 'text-slate-100 bg-slate-500 hover:bg-slate-600 active:bg-slate-700 focus:ring-slate-300',
+    }
+
+    const colorClass = colors[color];
+
     return (
         <button
-            className="flex items-center justify-center py-2 px-4 my-2 w-full h-10 text-sm font-medium rounded-md shadow-md text-slate-100 bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-300 transition ease-in-out duration-150"
+            className={`${colorClass} flex items-center justify-center py-2 px-4 my-2 w-full h-10 text-sm font-medium rounded-md shadow-md focus:outline-none focus:ring  transition ease-in-out duration-150`}
             name={name}
             onClick={onClick}
         >
