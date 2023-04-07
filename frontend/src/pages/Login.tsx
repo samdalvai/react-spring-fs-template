@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import Card from "../layout/Card";
 import MemoryLogo from '../components/MemoryLogo';
 import InputField from './../components/InputField';
 import Button from "../components/Button";
 import { RootState } from "../store";
-import { login } from '../reducers/authReducer'
+import { autoLogin, login } from '../reducers/authReducer'
 import { useNavigate } from "react-router-dom";
 import ErrorAlert from "../components/ErrorAlert";
 import { resetError } from "../reducers/authReducer";
@@ -18,6 +18,10 @@ export default function Login() {
 	const [password, setPassword] = useState<string>("");
 
 	const { isAuthenticated, loading, error } = useSelector((state: RootState) => state.auth);
+
+	useEffect(() => {
+		dispatch(autoLogin());
+	},[])
 
 	const onSubmit = () => {
 		dispatch(resetError());
