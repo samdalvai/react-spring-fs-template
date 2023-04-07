@@ -48,7 +48,6 @@ public class AuthController {
 
         var auth = (Authentication) request.getUserPrincipal();
         var user = (User) auth.getPrincipal();
-        System.out.println("User: " + user);
         log.info("User {} logged in.", user.getUsername());
 
         rememberMeServices.loginSuccess(request, response, auth);
@@ -57,7 +56,12 @@ public class AuthController {
 
     @PostMapping("/logout")
     public LogoutResponse logout(HttpServletRequest request) throws ServletException {
+        var auth = (Authentication) request.getUserPrincipal();
+        var user = (User) auth.getPrincipal();
+        log.info("User {} logged out.", user.getUsername());
+
         request.logout();
+
         return new LogoutResponse();
     }
 
