@@ -25,7 +25,7 @@ export default function Home() {
     }
 
     return (
-        <div className="text-2xl bold">
+        <div>
             <div className="flex flex-col w-64 border border-black">
                 <span>Hello user '{user.username}' </span>
                 <span>Test: {testMessage}</span>
