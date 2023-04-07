@@ -94,7 +94,6 @@ const authSlice = createSlice({
             })
             .addCase(autoLogin.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message;
             })
             .addCase(signup.pending, (state) => {
                 state.loading = true;

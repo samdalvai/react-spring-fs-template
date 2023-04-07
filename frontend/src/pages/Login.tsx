@@ -17,11 +17,11 @@ export default function Login() {
 	const [userName, setUserName] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 
-	const { isAuthenticated, loading, error } = useSelector((state: RootState) => state.auth);
+	const { isAuthenticated, loading, error, user } = useSelector((state: RootState) => state.auth);
 
 	useEffect(() => {
 		dispatch(autoLogin());
-	},[])
+	}, [])
 
 	const onSubmit = () => {
 		dispatch(resetError());
