@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-public class PasswordUtils {
+public class HashUtils {
     public static String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -19,10 +19,10 @@ public class PasswordUtils {
         }
     }
 
-    public static String generateSalt() {
+    public static String generateSalt(int length) {
         SecureRandom random = new SecureRandom();
 
-        byte[] salt = new byte[16];
+        byte[] salt = new byte[length];
         random.nextBytes(salt);
 
         return hex(salt);
