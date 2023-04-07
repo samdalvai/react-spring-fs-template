@@ -38,7 +38,6 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 
 export const autoLogin = createAsyncThunk('auth/autoLogin', async () => {
     const response = await userAPI();
-    console.log("response: ", response)
     return response.data;
 });
 
