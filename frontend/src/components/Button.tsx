@@ -12,7 +12,7 @@ export default function Button({ label, name, color = 'indigo', loading = false,
 
     return (
         <button
-            className={`${colorClass} flex items-center justify-center py-2 px-4 my-2 w-full h-10 text-sm font-medium rounded-md shadow-md focus:outline-none focus:ring  transition ease-in-out duration-150`}
+            className={`${colorClass} flex items-center justify-center py-2 px-4 my-2 w-full h-10 text-sm font-medium rounded-md shadow-md focus:outline-none focus:ring transition ease-in-out duration-150`}
             name={name}
             onClick={onClick}
         >

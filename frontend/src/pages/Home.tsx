@@ -12,10 +12,6 @@ export default function Home() {
     const [testMessage, setTestMessage] = useState<string>('');
     console.log("User in home page: ", user)
 
-    const handleLogout = () => {
-        dispatch(logout())
-    }
-
     const handleTest = () => {
         client.get('api/test').then(res => {
             setTestMessage(res.data);
@@ -26,14 +22,10 @@ export default function Home() {
 
     return (
         <div>
-            <div className="flex flex-col w-64 border border-black">
+            <div className="p-2 flex flex-col w-64 border-2 border-black shadow-md rounded">
                 <span>Hello user '{user.username}' </span>
                 <span>Test: {testMessage}</span>
             </div>
-            <Button
-                label={"Logout"}
-                name={"logout"}
-                onClick={handleLogout} />
             <Button
                 color="blue"
                 label={"Test"}
