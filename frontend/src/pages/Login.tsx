@@ -6,25 +6,31 @@ import InputField from './../components/InputField';
 import Button from "../components/Button";
 import { RootState } from "../store";
 import { login } from '../reducers/authReducer'
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ErrorAlert from "../components/ErrorAlert";
 import { resetError } from "../reducers/authReducer";
 import { ThunkDispatch } from "redux-thunk";
 
 export default function Login() {
 	const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+	const navigate = useNavigate();
 	const [userName, setUserName] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 
 	const { isAuthenticated, loading, error } = useSelector((state: RootState) => state.auth);
 
 	const onSubmit = () => {
-		dispatch(resetError())
-		dispatch(login({ username: userName, password: password }))
+		dispatch(resetError());
+		dispatch(login({ username: userName, password: password }));
+	}
+
+	const handleSignup = () => {
+		dispatch(resetError());
+		navigate('/signup');
 	}
 
 	if (isAuthenticated) {
-		return <Navigate to={"/"} />;
+		navigate('/');
 	}
 
 	return (
@@ -64,7 +70,10 @@ export default function Login() {
 			</Card>
 			<hr className="my-2 border-none" />
 			<Card size="sm">
-				<div><span className="font-medium">New to MemoryNotes? </span><a className="font-semibold underline text-indigo-500 hover:text-indigo-900 transition ease-out duration-150" href="/signup">Register</a></div>
+				<div>
+					<span className="font-medium">New to MemoryNotes? </span>
+					<a className="font-semibold underline text-indigo-500 hover:text-indigo-900 transition ease-out duration-150" onClick={handleSignup}>Register</a>
+				</div>
 			</Card>
 		</div>
 	)
