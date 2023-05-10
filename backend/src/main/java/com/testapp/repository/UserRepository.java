@@ -1,6 +1,6 @@
-package com.memorynotes.repository;
+package com.testapp.repository;
 
-import com.memorynotes.model.User;
+import com.testapp.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

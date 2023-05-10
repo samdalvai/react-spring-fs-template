@@ -1,4 +1,4 @@
-package com.memorynotes.authentication.hash;
+package com.testapp.authentication.hash;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

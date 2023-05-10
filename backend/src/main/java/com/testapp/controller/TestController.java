@@ -1,6 +1,6 @@
-package com.memorynotes.controller;
+package com.testapp.controller;
 
-import com.memorynotes.model.User;
+import com.testapp.model.User;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

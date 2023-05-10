@@ -1,4 +1,4 @@
-package com.memorynotes.form;
+package com.testapp.form;
 
 import jakarta.validation.constraints.NotBlank;
 

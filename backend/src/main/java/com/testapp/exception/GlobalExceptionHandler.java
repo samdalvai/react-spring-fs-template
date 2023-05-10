@@ -1,6 +1,6 @@
-package com.memorynotes.exception;
+package com.testapp.exception;
 
-import com.memorynotes.AppException;
+import com.testapp.AppException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

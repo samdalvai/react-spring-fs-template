@@ -1,11 +1,11 @@
-package com.memorynotes.controller;
+package com.testapp.controller;
 
-import com.memorynotes.AppException;
-import com.memorynotes.authentication.CustomPasswordEncoder;
-import com.memorynotes.form.LoginForm;
-import com.memorynotes.form.SignupForm;
-import com.memorynotes.model.User;
-import com.memorynotes.repository.UserRepository;
+import com.testapp.AppException;
+import com.testapp.authentication.CustomPasswordEncoder;
+import com.testapp.form.LoginForm;
+import com.testapp.form.SignupForm;
+import com.testapp.model.User;
+import com.testapp.repository.UserRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

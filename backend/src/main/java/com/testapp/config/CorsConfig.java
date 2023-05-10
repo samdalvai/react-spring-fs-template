@@ -1,4 +1,4 @@
-package com.memorynotes.config;
+package com.testapp.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

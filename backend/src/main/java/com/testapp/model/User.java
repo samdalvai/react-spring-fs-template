@@ -1,4 +1,4 @@
-package com.memorynotes.model;
+package com.testapp.model;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;

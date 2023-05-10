@@ -1,6 +1,6 @@
-package com.memorynotes.config;
+package com.testapp.config;
 
-import com.memorynotes.authentication.CustomPasswordEncoder;
+import com.testapp.authentication.CustomPasswordEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;

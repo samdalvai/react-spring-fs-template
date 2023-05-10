@@ -1,4 +1,4 @@
-package com.memorynotes.authentication;
+package com.testapp.authentication;
 
 import org.junit.jupiter.api.Test;
 

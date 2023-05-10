@@ -1,6 +1,6 @@
-package com.memorynotes.service;
+package com.testapp.service;
 
-import com.memorynotes.repository.UserRepository;
+import com.testapp.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

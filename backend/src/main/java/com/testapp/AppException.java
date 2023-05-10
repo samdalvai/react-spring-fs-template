@@ -1,4 +1,4 @@
-package com.memorynotes;
+package com.testapp;
 
 import lombok.Getter;
 
