@@ -1,4 +1,3 @@
-import Header from "./Header";
 import { ChildrenProps } from "../types/props";
 
 export default function Layout({ children }: { children: ChildrenProps}) {
