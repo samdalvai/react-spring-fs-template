@@ -1,7 +1,8 @@
-# memory-notes
-A web application for keeping notes and knowledge.
-The application architecture is based on a backend API with `Java Spring Boot` along with a `PostgreSQL` database,
-and a frontend application with `React`.
+# React Spring full stack application template
+A template for a full stack web application based on a backend API with `Java Spring Boot` along with a `PostgreSQL` database 
+and a frontend application With `React Typescript`, configured with `Vite` and `Tailwind CSS`.
+The frontend application includes basic routing with login, sign up and a home page.
+The backend application includes user authentication, registration and API endpoint protection with `Spring Security`, the database integration is configured with `Spring Data`.
 
 # Table of contents
 * [How to configure](#how-to-configure)
@@ -71,7 +72,7 @@ Access the application at http://localhost:3000 in the browser.
 
 > docker rm my-postgres-container --volumes
 
-* You can access the database with any management tool, for example `pgAdmin` by connecting to `https://localhot:5432`, please look in the `Dockerfile` inside the `db/` folder for the credentials.
+* You can access the database with any management tool, for example `pgAdmin` by connecting to `https://localhost:5432`, please look in the `Dockerfile` inside the `db/` folder for the credentials.
 
 # Author
 Samuel Dalvai, samuel.dalvai@gmail.com
