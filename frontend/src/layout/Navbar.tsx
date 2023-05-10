@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MemoryLogo from "../components/MemoryLogo";
+import AppLogo from "../components/AppLogo";
 import { useNavigate } from "react-router-dom";
 import { ThunkDispatch } from "redux-thunk";
 import { useDispatch } from "react-redux";
@@ -37,9 +37,9 @@ export default function Navbar() {
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex flex-shrink-0 items-center">
                             <div className="text-xl flex items-center justify-center">
-                                <MemoryLogo />
+                                <AppLogo />
                                 <span>
-                                    <h1 className=" ml-2 text-slate-200 dark:text-white text-xl font-medium">MemoryNotes</h1>
+                                    <h1 className=" ml-2 text-slate-200 dark:text-white text-xl font-medium">TestApp</h1>
                                 </span>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import Card from "../layout/Card";
-import MemoryLogo from '../components/MemoryLogo';
+import AppLogo from '../components/AppLogo';
 import InputField from './../components/InputField';
 import Button from "../components/Button";
 import { RootState } from "../store";
@@ -41,10 +41,10 @@ export default function Login() {
 		<div>
 			<div className="py-5 text-xl flex items-center justify-center">
 				<span>
-					<h1 className="text-slate-700 dark:text-white text-xl font-medium">Login to MemoryNotes</h1>
+					<h1 className="text-slate-700 dark:text-white text-xl font-medium">Login to TestApp</h1>
 				</span>
 				<span className="ml-3 p-3 bg-indigo-500 rounded-md shadow-md">
-					<MemoryLogo />
+					<AppLogo />
 				</span>
 			</div>
 			{error ? <ErrorAlert message="Wrong username or password..." onClose={() => dispatch(resetError())} /> : null}
@@ -75,7 +75,7 @@ export default function Login() {
 			<hr className="my-2 border-none" />
 			<Card size="sm">
 				<div>
-					<span className="font-medium">New to MemoryNotes? </span>
+					<span className="font-medium">New to TestApp? </span>
 					<a className="font-semibold underline text-indigo-500 hover:text-indigo-900 hover:cursor-pointer transition ease-out duration-150" onClick={handleSignup}>Register</a>
 				</div>
 			</Card>
